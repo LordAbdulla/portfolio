@@ -595,7 +595,7 @@
         const downloadBtn = document.getElementById("downloadBtn");
         const downloadImg = document.getElementById("downloadImg");
 
-        const downloadImageSrc = "https://img.sanishtech.com/u/4a8dee4bcab8ba56e40b44d3ee254b9f.png"; // CV preview
+        const downloadImageSrc = "resume.png"; // CV preview
         const cvPDF = "MyResume.pdf"; // PDF filename
 
         downloadBtn.addEventListener("click", () => {
@@ -609,7 +609,7 @@
 
             setTimeout(() => {
                 downloadImg.style.transition = "clip-path 2.5s ease";
-                downloadImg.style.clipPath = "inset(0 0 0 0)"; // reveal image
+                downloadImg.style.clipPath = "inset(0 0 0 0)"; 
             }, 50);
 
             setTimeout(() => {
@@ -618,7 +618,6 @@
                 a.download = cvPDF;
                 a.click();
 
-                // Shrink image back after download
                 downloadImg.style.transition = "clip-path 1s ease";
                 downloadImg.style.clipPath = "inset(100% 0 0 0)";
                 setTimeout(() => {
@@ -627,7 +626,7 @@
                     downloadImg.style.display = "none"; // fully hide
                 }, 1000); 
 
-            }, 2700); // after the reveal animation
+            }, 2700); 
         });
 
         const canvas = document.getElementById("matrix");
