@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulla Homaidan – Cybersecurity Portfolio</title>
+
+    <style>
+        /* ------------------------------------
+CYBERSECURITY THEME + MATRIX + 3D FX
+-------------------------------------- */
+        :root {
+            --blue: #00eaff;
+            --purple: #b315ff;
+            --dark: #030615;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #030615;
+            color: #e6e6e6;
+            overflow-x: hidden;
+        }
+
+        /* Matrix background (particles) */
+        canvas#matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+        }
+
+        /* Scan lines */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(to bottom,
+                    rgba(0, 255, 255, 0.03) 0px,
+                    rgba(0, 255, 255, 0.03) 1px,
+                    transparent 2px);
+            animation: scan 6s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Glass Section Cards */
+        .section {
+            background: var(--glass);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            max-width: 1000px;
+            box-shadow: 0 0 35px rgba(0, 255, 255, 0.1);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--blue);
+            border-left: 4px solid var(--purple);
+            padding-left: 12px;
+            margin-bottom: 25px;
+        }
+
+        /* Glitch Title */
+        .glitch {
+            font-size: 48px;
+            color: var(--blue);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+        }
+
+        .glitch::before {
+            color: #ff00ff;
+            animation: glitch1 2s infinite;
+        }
+
+        .glitch::after {
+            color: #00ffff;
+            animation: glitch2 2.5s infinite;
+        }
+
+        @keyframes glitch1 {
+            0% {
+                clip-path: inset(20% 0 40% 0);
+                transform: translate(-2px);
+            }
+
+            100% {
+                clip-path: inset(60% 0 5% 0);
+                transform: translate(2px);
+            }
+        }
+
+        @keyframes glitch2 {
+            0% {
+                clip-path: inset(10% 0 50% 0);
+                transform: translate(2px);
+            }
+
+            100% {
+                clip-path: inset(40% 0 10% 0);
+                transform: translate(-2px);
+            }
+        }
+
+        /* Terminal typing intro */
+        #terminal {
+            font-family: "Courier New", monospace;
+            font-size: 18px;
+            background: black;
+            padding: 15px;
+            border-left: 4px solid var(--blue);
+            color: var(--blue);
+            height: auto;
+            margin-bottom: 25px;
+            white-space: pre-wrap;
+        }
+
+        /* Hologram avatar frame */
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 20px var(--blue);
+            }
+
+            50% {
+                box-shadow: 0 0 45px var(--purple);
+            }
+
+            100% {
+                box-shadow: 0 0 20px var(--blue);
+            }
+        }
+
+        /* 3D Cards */
+        .card-3d {
+            background: var(--glass);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            perspective: 600px;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Projects Grid */
+        .projects {
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* 3D Cube */
+        #cube {
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            transform-style: preserve-3d;
+            animation: cubeSpin 12s infinite linear;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid var(--blue);
+            background: rgba(0, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        #front {
+            transform: translateZ(75px);
+        }
+
+        #back {
+            transform: rotateY(180deg) translateZ(75px);
+        }
+
+        #right {
+            transform: rotateY(90deg) translateZ(75px);
+        }
+
+        #left {
+            transform: rotateY(-90deg) translateZ(75px);
+        }
+
+        #top {
+            transform: rotateX(90deg) translateZ(75px);
+        }
+
+        #bottom {
+            transform: rotateX(-90deg) translateZ(75px);
+        }
+
+        @keyframes cubeSpin {
+            0% {
+                transform: rotateX(0) rotateY(0);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        /* Contact Form */
+        input,
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--blue);
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        button {
+            background: var(--blue);
+            padding: 12px 22px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background: var(--purple);
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* -------------------------
+ANIMATED TOP RIGHT SOCIAL ICONS
+-------------------------- */
+        #top-right-links {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            gap: 18px;
+        }
+
+        /* ICON BASE STYLE */
+        #top-right-links .icon {
+            width: 40px;
+            height: 40px;
+            padding: 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+
+            /* neon glow */
+            filter: drop-shadow(0 0 6px var(--blue));
+
+            transition: 0.35s ease;
+            animation: float 3s ease-in-out infinite, pulse 2.5s infinite;
+        }
+
+        /* HOVER EFFECT: rise + rotate + glow */
+        #top-right-links .icon:hover {
+            transform: scale(1.25) rotate(8deg) translateY(-3px);
+            filter: drop-shadow(0 0 15px var(--purple));
+            border-color: var(--purple);
+        }
+
+        /* FLOAT ANIMATION */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* PULSE NEON ANIMATION */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px var(--blue);
+            }
+
+            50% {
+                box-shadow: 0 0 25px var(--purple);
+            }
+
+            100% {
+                box-shadow: 0 0 10px var(--blue);
+            }
+        }
+
+        /* -----------------------------------
+RESPONSIVE ICON ADJUSTMENTS (MOBILE)
+------------------------------------ */
+        @media (max-width: 768px) {
+            #top-right-links {
+                top: 12px;
+                right: 15px;
+                gap: 12px;
+            }
+
+            #top-right-links .icon {
+                width: 32px;
+                height: 32px;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #top-right-links {
+                top: 10px;
+                right: 10px;
+                gap: 10px;
+            }
+
+            #top-right-links .icon {
+                width: 26px;
+                height: 26px;
+                padding: 4px;
+                border-radius: 6px;
+            }
+        }
+
+        /* Progress Bar Container */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 20px;
+            margin: 8px 0 20px 0;
+            width: 100%;
+        }
+
+        /* Progress Bar Fill */
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            text-align: right;
+            padding-right: 8px;
+            box-sizing: border-box;
+            color: white;
+            font-weight: bold;
+            line-height: 20px;
+            border-radius: 12px;
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="matrix"></canvas>
+    <!-- TOP RIGHT SOCIAL LINKS WITH ANIMATED ICONS -->
+    <div id="top-right-links">
+        <a href="https://www.linkedin.com/in/abdulla-homaidan-b302b9388" target="_blank" class="social-link">
+            <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                alt="LinkedIn">
+        </a>
+
+        <a href="https://github.com/LordAbdulla" target="_blank" class="social-link">
+            <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                alt="GitHub">
+        </a>
+    </div>
+
+
+
+    <!-- HEADER -->
+    <section class="section">
+        <h1 class="glitch" data-text="ABDULLA HOMAIDAN">ABDULLA HOMAIDAN</h1>
+        <p>Full-stack Developer • Network Security • Ethical Hacking • Digital Forensics</p>
+
+        <div id="terminal"></div>
+
+        <!-- DOWNLOAD CV BUTTON INSIDE FIRST BLOCK -->
+        <button id="downloadBtn" style="margin-top:20px;">Download CV</button>
+        <br>
+        <img id="downloadImg"
+            style="width:250px; display:block; margin-top:15px; clip-path: inset(100% 0 0 0); transition: clip-path 2.5s ease;">
+
+        <div class="holo-frame"></div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="section">
+        <h2 class="section-title">About Me</h2>
+        <p>
+            I am a Full-Stack Developer and Cybersecurity enthusiast with a deep understanding of user needs,
+            transforming ideas into integrated, efficient, and elegant technical solutions. I design and develop tools,
+            applications, and intelligent systems that enhance performance and enrich user experiences with innovation
+            and professionalism. I believe that creativity in programming goes beyond writing code it’s about building
+            solutions that make a tangible impact and deliver real value in the tech world. I have hands-on experience
+            from over 15 GitHub projects, ranging from smart tools and educational applications to full-fledged
+            websites.
+        </p>
+    </section>
+
+
+    <!-- SKILLS -->
+<section class="section">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="projects">
+        <div class="card-3d">
+            Python 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="90%">90%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            GoLang 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="70%">70%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            AI & Machine Learning 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="50%">50%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Web & Backend Development
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="85%">85%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Cybersecurity & Pentesting
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="85%">85%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Git 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="90%">90%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Docker 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="70%">70%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Cloud Fundamentals
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="60%">60%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            HTML & CSS 
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="85%">85%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Lua
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="90%">90%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            PHP
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="80%">80%</div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            Java
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="40%">40%</div>
+            </div>
+        </div>
+        <div class="card-3d">
+            SQL
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="65%">65%</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- LANGUAGES -->
+    <section class="section">
+        <h2 class="section-title">Languages</h2>
+
+        <div class="card-3d">
+            English
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="100%">100%</div>
+            </div>
+        </div>
+        <div class="card-3d">
+            Arabic
+            <div class="progress-container">
+                <div class="progress-bar" data-progress="100%">100%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="section">
+        <h2 class="section-title">Interests</h2>
+        <div class="card-3d">Penetration Testing & Ethical Hacking</div>
+        <div class="card-3d">Network Security & Threat Analysis</div>
+        <div class="card-3d">Front-end & Back-end Development</div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section">
+        <h2 class="section-title">Projects</h2>
+
+        <div id="cube">
+            <div class="cube-face" id="front">Web App</div>
+            <div class="cube-face" id="back">API</div>
+            <div class="cube-face" id="right">Security</div>
+            <div class="cube-face" id="left">Tools</div>
+            <div class="cube-face" id="top">Scripts</div>
+            <div class="cube-face" id="bottom">AI</div>
+        </div>
+
+        <br><br>
+
+        <div class="projects">
+
+            <a href="https://github.com/LordAbdulla/TermiuxCode" target="_blank">
+                <div class="card-3d">Termuix Code Gen</div>
+            </a>
+
+            <a href="https://github.com/LordAbdulla/JWT-loginSys" target="_blank">
+                <div class="card-3d">JWT Secure Login System</div>
+            </a>
+
+            <a href="https://github.com/LordAbdulla/Firewall-Analyzer" target="_blank">
+                <div class="card-3d">Firewall Analyzer Tool</div>
+            </a>
+
+            <a href="https://github.com/LordAbdulla/AI-Log-Analyzer" target="_blank">
+                <div class="card-3d">AI-based Log Analyzer</div>
+            </a>
+            <a href="https://github.com/LordAbdulla/groupie-tracker" target="_blank">
+                <div class="card-3d">Web application</div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="section">
+        <h2 class="section-title">Contact Me</h2>
+
+        <!-- Contact Info -->
+        <p>Email: <a href="mailto:ildrx2001@gmail.com">ildrx2001@gmail.com</a></p>
+        <p>Phone: <a href="tel:+97338383783">+97338383783</a></p>
+
+    </section>
+
+
+    <script>
+        /* ----------------------
+        TYPING TERMINAL EFFECT
+        ----------------------- */
+        let terminal = document.getElementById("terminal");
+        let terminalText = [
+            "Initializing security interface...\n",
+            "Loading modules...\n",
+            "Verifying identity...\n",
+            "Access Granted: Welcome Abdulla.\n\n",
+            "Achievements:\n",
+            "- 200+ hours training in ethical hacking & network security.\n",
+            "- 50 vulnerabilities identified during assessments.\n"
+        ];
+        let index = 0;
+        function type() {
+            if (index < terminalText.length) {
+                let line = terminalText[index];
+                let charIndex = 0;
+                function typeChar() {
+                    if (charIndex < line.length) {
+                        terminal.textContent += line[charIndex];
+                        charIndex++;
+                        setTimeout(typeChar, 25);
+                    } else {
+                        index++;
+                        type();
+                    }
+                }
+                typeChar();
+            }
+        }
+        type();
+
+        const downloadBtn = document.getElementById("downloadBtn");
+        const downloadImg = document.getElementById("downloadImg");
+
+        const downloadImageSrc = "https://img.sanishtech.com/u/4a8dee4bcab8ba56e40b44d3ee254b9f.png"; // CV preview
+        const cvPDF = "MyResume.pdf"; // your PDF filename
+
+        downloadBtn.addEventListener("click", () => {
+            // Reset image before generation
+            downloadImg.style.transition = "none";
+            downloadImg.style.clipPath = "inset(100% 0 0 0)";
+            downloadImg.src = downloadImageSrc;
+            downloadImg.style.display = "block";
+
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = "Generating CV...";
+
+            // Small delay to trigger transition
+            setTimeout(() => {
+                downloadImg.style.transition = "clip-path 2.5s ease";
+                downloadImg.style.clipPath = "inset(0 0 0 0)"; // reveal image
+            }, 50);
+
+            // Trigger download after animation
+            setTimeout(() => {
+                const a = document.createElement("a");
+                a.href = cvPDF;
+                a.download = cvPDF;
+                a.click();
+
+                // Shrink image back after download
+                downloadImg.style.transition = "clip-path 1s ease";
+                downloadImg.style.clipPath = "inset(100% 0 0 0)";
+
+                // Reset button for next click
+                setTimeout(() => {
+                    downloadBtn.textContent = "Download CV";
+                    downloadBtn.disabled = false;
+                    downloadImg.style.display = "none"; // fully hide
+                }, 1000); // match the shrink duration
+
+            }, 2700); // after the reveal animation
+        });
+
+
+
+
+        /* ----------------------
+        MATRIX PARTICLES
+        ----------------------- */
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "01";
+        let fontSize = 16;
+        let columns = canvas.width / fontSize;
+        let drops = [];
+
+        for (let i = 0; i < columns; i++) drops[i] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0,0,0,0.07)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00eaff";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                let char = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 40);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = canvas.width / fontSize;
+            drops = [];
+            for (let i = 0; i < columns; i++) drops[i] = 1;
+        });
+
+        // Animate progress bars on page load
+        window.addEventListener("load", () => {
+            const bars = document.querySelectorAll(".progress-bar");
+            bars.forEach(bar => {
+                let progress = bar.getAttribute("data-progress");
+                setTimeout(() => {
+                    bar.style.width = progress;
+                    bar.textContent = progress;
+                }, 500);
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
