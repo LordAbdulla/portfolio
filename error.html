@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error — System Breach Detected</title>
+
+    <style>
+        :root {
+            --blue: #00eaff;
+            --purple: #b315ff;
+            --dark: #030615;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: #e6e6e6;
+            overflow: hidden;
+        }
+
+        canvas#matrix {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+        }
+
+        /* Scan Lines */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                    to bottom,
+                    rgba(0, 255, 255, 0.03) 0px,
+                    rgba(0, 255, 255, 0.03) 1px,
+                    transparent 2px
+            );
+            animation: scan 6s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Glitch Title */
+        .glitch {
+            font-size: 70px;
+            font-weight: bold;
+            color: var(--blue);
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+        }
+        .glitch::before {
+            color: #ff00ff;
+            animation: glitch1 2s infinite;
+        }
+        .glitch::after {
+            color: #00ffff;
+            animation: glitch2 2.5s infinite;
+        }
+        @keyframes glitch1 {
+            0% { clip-path: inset(20% 0 40% 0); transform: translate(-2px); }
+            100% { clip-path: inset(60% 0 5% 0); transform: translate(2px); }
+        }
+        @keyframes glitch2 {
+            0% { clip-path: inset(10% 0 50% 0); transform: translate(2px); }
+            100% { clip-path: inset(40% 0 10% 0); transform: translate(-2px); }
+        }
+
+        /* Card */
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            width: 70%;
+            max-width: 800px;
+            margin: 120px auto;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(0, 255, 255, 0.1);
+        }
+
+        /* Button */
+        button {
+            background: var(--blue);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+        button:hover {
+            background: var(--purple);
+        }
+
+        /* Floating Icons (Top Right) */
+        #top-right-links {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            display: flex;
+            gap: 18px;
+            z-index: 9999;
+        }
+
+        #top-right-links .icon {
+            width: 40px;
+            height: 40px;
+            padding: 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            filter: drop-shadow(0 0 6px var(--blue));
+            transition: 0.35s ease;
+            animation: float 3s ease-in-out infinite, pulse 2.5s infinite;
+        }
+        #top-right-links .icon:hover {
+            transform: scale(1.25) rotate(8deg) translateY(-3px);
+            filter: drop-shadow(0 0 15px var(--purple));
+            border-color: var(--purple);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px var(--blue); }
+            50% { box-shadow: 0 0 25px var(--purple); }
+            100% { box-shadow: 0 0 10px var(--blue); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- TOP RIGHT SOCIAL ICONS -->
+<div id="top-right-links">
+    <a href="https://www.linkedin.com/in/abdulla-homaidan-b302b9388" target="_blank">
+        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg">
+    </a>
+
+    <a href="https://github.com/LordAbdulla" target="_blank">
+        <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+    </a>
+</div>
+
+
+<!-- ERROR CARD -->
+<div class="card">
+    <h1 class="glitch" data-text="404 ERROR">404 ERROR</h1>
+    <p style="font-size:20px;">
+        The system attempted to locate the requested resource...  
+        <br><br>
+        <strong>Status:</strong> File not found  
+        <br>
+        <strong>Trace:</strong> Redirecting user to a safe route
+    </p>
+
+    <button onclick="window.location.href='index.html'">⬅ Return to Main Interface</button>
+</div>
+
+
+<script>
+/* Matrix Background */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01";
+let fontSize = 16;
+let columns = canvas.width / fontSize;
+let drops = [];
+for (let i = 0; i < columns; i++) drops[i] = 1;
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.07)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00eaff";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        let char = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.96)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 40);
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = canvas.width / fontSize;
+    drops = [];
+    for (let i = 0; i < columns; i++) drops[i] = 1;
+});
+</script>
+
+</body>
+</html>
