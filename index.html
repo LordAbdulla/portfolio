@@ -7,9 +7,6 @@
     <title>Abdulla Homaidan – Cybersecurity Portfolio</title>
 
     <style>
-        /* ------------------------------------
-CYBERSECURITY THEME + MATRIX + 3D FX
--------------------------------------- */
         :root {
             --blue: #00eaff;
             --purple: #b315ff;
@@ -24,8 +21,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             color: #e6e6e6;
             overflow-x: hidden;
         }
-
-        /* Matrix background (particles) */
         canvas#matrix {
             position: fixed;
             top: 0;
@@ -34,8 +29,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             height: 100vh;
             z-index: -10;
         }
-
-        /* Scan lines */
         body::before {
             content: "";
             position: fixed;
@@ -60,8 +53,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
                 transform: translateY(100%);
             }
         }
-
-        /* Glass Section Cards */
         .section {
             background: var(--glass);
             border: 1px solid rgba(0, 255, 255, 0.2);
@@ -72,8 +63,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             max-width: 1000px;
             box-shadow: 0 0 35px rgba(0, 255, 255, 0.1);
         }
-
-        /* Section Titles */
         .section-title {
             font-size: 32px;
             font-weight: bold;
@@ -82,8 +71,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             padding-left: 12px;
             margin-bottom: 25px;
         }
-
-        /* Glitch Title */
         .glitch {
             font-size: 48px;
             color: var(--blue);
@@ -131,8 +118,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
                 transform: translate(-2px);
             }
         }
-
-        /* Terminal typing intro */
         #terminal {
             font-family: "Courier New", monospace;
             font-size: 18px;
@@ -144,8 +129,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             margin-bottom: 25px;
             white-space: pre-wrap;
         }
-
-        /* Hologram avatar frame */
 
         @keyframes pulse {
             0% {
@@ -160,8 +143,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
                 box-shadow: 0 0 20px var(--blue);
             }
         }
-
-        /* 3D Cards */
         .card-3d {
             background: var(--glass);
             border: 1px solid rgba(0, 255, 255, 0.2);
@@ -175,15 +156,11 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             transform: rotateY(10deg) rotateX(5deg) scale(1.05);
             box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
         }
-
-        /* Projects Grid */
         .projects {
             display: grid;
             gap: 25px;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
-
-        /* 3D Cube */
         #cube {
             width: 150px;
             height: 150px;
@@ -237,8 +214,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
                 transform: rotateX(360deg) rotateY(360deg);
             }
         }
-
-        /* Contact Form */
         input,
         textarea {
             width: 100%;
@@ -272,9 +247,6 @@ CYBERSECURITY THEME + MATRIX + 3D FX
             text-decoration: underline;
         }
 
-        /* -------------------------
-ANIMATED TOP RIGHT SOCIAL ICONS
--------------------------- */
         #top-right-links {
             position: fixed;
             top: 20px;
@@ -283,8 +255,6 @@ ANIMATED TOP RIGHT SOCIAL ICONS
             display: flex;
             gap: 18px;
         }
-
-        /* ICON BASE STYLE */
         #top-right-links .icon {
             width: 40px;
             height: 40px;
@@ -293,22 +263,16 @@ ANIMATED TOP RIGHT SOCIAL ICONS
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 255, 255, 0.3);
             backdrop-filter: blur(8px);
-
-            /* neon glow */
             filter: drop-shadow(0 0 6px var(--blue));
 
             transition: 0.35s ease;
             animation: float 3s ease-in-out infinite, pulse 2.5s infinite;
         }
-
-        /* HOVER EFFECT: rise + rotate + glow */
         #top-right-links .icon:hover {
             transform: scale(1.25) rotate(8deg) translateY(-3px);
             filter: drop-shadow(0 0 15px var(--purple));
             border-color: var(--purple);
         }
-
-        /* FLOAT ANIMATION */
         @keyframes float {
             0% {
                 transform: translateY(0);
@@ -322,8 +286,6 @@ ANIMATED TOP RIGHT SOCIAL ICONS
                 transform: translateY(0);
             }
         }
-
-        /* PULSE NEON ANIMATION */
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 10px var(--blue);
@@ -338,9 +300,6 @@ ANIMATED TOP RIGHT SOCIAL ICONS
             }
         }
 
-        /* -----------------------------------
-RESPONSIVE ICON ADJUSTMENTS (MOBILE)
------------------------------------- */
         @media (max-width: 768px) {
             #top-right-links {
                 top: 12px;
@@ -369,8 +328,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
                 border-radius: 6px;
             }
         }
-
-        /* Progress Bar Container */
         .progress-container {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 255, 255, 0.2);
@@ -380,8 +337,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
             margin: 8px 0 20px 0;
             width: 100%;
         }
-
-        /* Progress Bar Fill */
         .progress-bar {
             height: 100%;
             width: 0%;
@@ -401,7 +356,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
 <body>
 
     <canvas id="matrix"></canvas>
-    <!-- TOP RIGHT SOCIAL LINKS WITH ANIMATED ICONS -->
     <div id="top-right-links">
         <a href="https://www.linkedin.com/in/abdulla-homaidan-b302b9388" target="_blank" class="social-link">
             <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
@@ -414,16 +368,12 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         </a>
     </div>
 
-
-
-    <!-- HEADER -->
     <section class="section">
         <h1 class="glitch" data-text="ABDULLA HOMAIDAN">ABDULLA HOMAIDAN</h1>
         <p>Full-stack Developer • Network Security • Ethical Hacking • Digital Forensics</p>
 
         <div id="terminal"></div>
 
-        <!-- DOWNLOAD CV BUTTON INSIDE FIRST BLOCK -->
         <button id="downloadBtn" style="margin-top:20px;">Download CV</button>
         <br>
         <img id="downloadImg"
@@ -432,8 +382,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         <div class="holo-frame"></div>
     </section>
 
-
-    <!-- ABOUT -->
     <section class="section">
         <h2 class="section-title">About Me</h2>
         <p>
@@ -447,8 +395,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         </p>
     </section>
 
-
-    <!-- SKILLS -->
 <section class="section">
     <h2 class="section-title">Skills</h2>
 
@@ -545,7 +491,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
     </div>
 </section>
 
-    <!-- LANGUAGES -->
     <section class="section">
         <h2 class="section-title">Languages</h2>
 
@@ -563,15 +508,12 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         </div>
     </section>
 
-    <!-- INTERESTS -->
     <section class="section">
         <h2 class="section-title">Interests</h2>
         <div class="card-3d">Penetration Testing & Ethical Hacking</div>
         <div class="card-3d">Network Security & Threat Analysis</div>
         <div class="card-3d">Front-end & Back-end Development</div>
     </section>
-
-    <!-- PROJECTS -->
     <section class="section">
         <h2 class="section-title">Projects</h2>
 
@@ -610,11 +552,9 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         </div>
     </section>
 
-    <!-- CONTACT FORM -->
     <section class="section">
         <h2 class="section-title">Contact Me</h2>
 
-        <!-- Contact Info -->
         <p>Email: <a href="mailto:ildrx2001@gmail.com">ildrx2001@gmail.com</a></p>
         <p>Phone: <a href="tel:+97338383783">+97338383783</a></p>
 
@@ -622,9 +562,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
 
 
     <script>
-        /* ----------------------
-        TYPING TERMINAL EFFECT
-        ----------------------- */
         let terminal = document.getElementById("terminal");
         let terminalText = [
             "Initializing security interface...\n",
@@ -659,10 +596,9 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
         const downloadImg = document.getElementById("downloadImg");
 
         const downloadImageSrc = "https://img.sanishtech.com/u/4a8dee4bcab8ba56e40b44d3ee254b9f.png"; // CV preview
-        const cvPDF = "MyResume.pdf"; // your PDF filename
+        const cvPDF = "MyResume.pdf"; // PDF filename
 
         downloadBtn.addEventListener("click", () => {
-            // Reset image before generation
             downloadImg.style.transition = "none";
             downloadImg.style.clipPath = "inset(100% 0 0 0)";
             downloadImg.src = downloadImageSrc;
@@ -671,13 +607,11 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
             downloadBtn.disabled = true;
             downloadBtn.textContent = "Generating CV...";
 
-            // Small delay to trigger transition
             setTimeout(() => {
                 downloadImg.style.transition = "clip-path 2.5s ease";
                 downloadImg.style.clipPath = "inset(0 0 0 0)"; // reveal image
             }, 50);
 
-            // Trigger download after animation
             setTimeout(() => {
                 const a = document.createElement("a");
                 a.href = cvPDF;
@@ -687,23 +621,15 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
                 // Shrink image back after download
                 downloadImg.style.transition = "clip-path 1s ease";
                 downloadImg.style.clipPath = "inset(100% 0 0 0)";
-
-                // Reset button for next click
                 setTimeout(() => {
                     downloadBtn.textContent = "Download CV";
                     downloadBtn.disabled = false;
                     downloadImg.style.display = "none"; // fully hide
-                }, 1000); // match the shrink duration
+                }, 1000); 
 
             }, 2700); // after the reveal animation
         });
 
-
-
-
-        /* ----------------------
-        MATRIX PARTICLES
-        ----------------------- */
         const canvas = document.getElementById("matrix");
         const ctx = canvas.getContext("2d");
 
@@ -740,7 +666,6 @@ RESPONSIVE ICON ADJUSTMENTS (MOBILE)
             for (let i = 0; i < columns; i++) drops[i] = 1;
         });
 
-        // Animate progress bars on page load
         window.addEventListener("load", () => {
             const bars = document.querySelectorAll(".progress-bar");
             bars.forEach(bar => {
